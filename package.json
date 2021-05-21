@@ -7,9 +7,11 @@
     "build": "npx tsc",
     "start": "nodemon src/index.ts",
     "jasmine": "jasmine",
-    "test": "npm run build && npm run jasmine"
+    "test": "npm run build && npm run jasmine",
+    "prettier": "prettier --config .prettierrc 'src/**/*.js' --write",
+    "lint": "eslint src/**/*.js"
   },
-  "author": "",
+  "author": "Markus Fleischmann",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
@@ -21,6 +23,8 @@
     "@types/jasmine": "^3.7.4",
     "@types/node": "^15.3.1",
     "@types/typescript": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.24.0",
+    "@typescript-eslint/parser": "^4.24.0",
     "eslint": "^7.26.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.3.0",
