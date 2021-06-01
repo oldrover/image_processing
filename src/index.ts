@@ -6,7 +6,7 @@ const port = 3000;
 
 app.use(express.static('images'));
 
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
     res.redirect('/api/images');
 });
 
