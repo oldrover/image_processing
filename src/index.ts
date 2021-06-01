@@ -6,7 +6,7 @@ const port = 3000;
 
 app.use(express.static('images'));
 
-app.get('/', (_req, res): void => {
+app.get('/', (_req: express.Request, res: express.Response): void => {
   res.send('Server is running!');
 });
 
