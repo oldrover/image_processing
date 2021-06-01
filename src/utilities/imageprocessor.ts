@@ -4,10 +4,10 @@ import sharp from 'sharp';
 import ImageFile from './imageFileClass';
 
 
-const imageprocessing = (
+const imageprocessing = async (
     req: express.Request, 
     res: express.Response, 
-    next: Function): void => {
+    next: Function): Promise<void> => {
         
     if(!req.query.filename || !req.query.width || !req.query.height) {        
         !req.query.filename ? res.send("Please add an image filename") 
@@ -20,25 +20,27 @@ const imageprocessing = (
             req.query.width as string, 
             req.query.height as string);
 
+        if(fs.existsSync(imageFile.getOutPath())) {            
+            res.send(`<img src=../thumb/${imageFile.getRoutePath()}>`);
+        }
+        else {
+            if(fs.existsSync(imageFile.getSrcPath())) {
 
-        if(fs.existsSync(imageFile.getSrcPath())) {
-            if(processFile(imageFile)) {                                        
-                    //res.redirect('/thumb/' + req.query.filename + '.jpg');
+
+                if( await processFile(imageFile)) {                     
                     res.send(`<img src=../thumb/${imageFile.getRoutePath()}>`);
                 }
-                else{                    
-                    res.send("Error occured")
-
+                else {                    
+                    res.send("Error occured while processing the image!");    
                 }
-
-        }          
-        else {
-            console.log(`requested file not found ${imageFile.getSrcPath()}`)
-            res.send('file not found');
-
-        }              
-    }   
     
+            }          
+            else {
+                console.log(`requested file not found ${imageFile.getSrcPath()}`)
+                res.send('file not found');    
+            } 
+        }           
+    }       
     next();
 }
 
@@ -53,6 +55,6 @@ const processFile = async (imageFile: ImageFile): Promise<boolean> => {
         .catch(()=> check = false)  
 
     return check;
-};
+}
 
 export default imageprocessing;
