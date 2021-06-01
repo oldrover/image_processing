@@ -24,19 +24,24 @@ describe('Test endpoint responses', () => {
       expect(response.statusCode).toBe(200);
     });
 
-    it('should respond: Please add an image filename', async () => {
+    it('should respond: Please add an image filename!', async () => {
       const response = await request.get('/api/images');
-      expect(response.text).toBe('Please add an image filename');
+      expect(response.text).toBe('Please add an image filename!');
     });
 
-    it('should respond: Please add a width value', async () => {
+    it('should respond: Please add a width value!', async () => {
       const response = await request.get('/api/images?filename=test');
-      expect(response.text).toBe('Please add a width value');
+      expect(response.text).toBe('Please add a width value!');
     });
 
-    it('should respond: Please add a height value', async () => {
+    it('should respond: Please add a height value!', async () => {
       const response = await request.get('/api/images?filename=test&width=200');
-      expect(response.text).toBe('Please add a height value');
+      expect(response.text).toBe('Please add a height value!');
+    });
+
+    it('should respond: The Values for width and height have to be number!', async () => {
+      const response = await request.get('/api/images?filename=test&width=200&height=no');
+      expect(response.text).toBe('The Values for width and height have to be number!');
     });
   });
 });
