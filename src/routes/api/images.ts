@@ -16,17 +16,15 @@ const images = async (
       ? res.send('Please add a width value!')
       : res.send('Please add a height value!');
   } else {
-
-    if(isNaN(Number(req.query.width)) || isNaN(Number(req.query.height))) {
+    if (isNaN(Number(req.query.width)) || isNaN(Number(req.query.height))) {
       res.send('The Values for width and height have to be number!');
-    }
-    else {
+    } else {
       const imageFile = new ImageFile(
         req.query.filename as string,
         req.query.width as string,
         req.query.height as string
       );
-  
+
       if (fs.existsSync(imageFile.getOutPath())) {
         res.send(`<img src=../thumb/${imageFile.getRoutePath()}>`);
       } else {
@@ -41,7 +39,7 @@ const images = async (
           res.send('file not found');
         }
       }
-    }    
+    }
   }
   next();
 };

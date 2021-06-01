@@ -40,8 +40,12 @@ describe('Test endpoint responses', () => {
     });
 
     it('should respond: The Values for width and height have to be number!', async () => {
-      const response = await request.get('/api/images?filename=test&width=200&height=no');
-      expect(response.text).toBe('The Values for width and height have to be number!');
+      const response = await request.get(
+        '/api/images?filename=test&width=200&height=no'
+      );
+      expect(response.text).toBe(
+        'The Values for width and height have to be number!'
+      );
     });
   });
 });
