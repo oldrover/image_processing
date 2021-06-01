@@ -1,4 +1,4 @@
-import imageprocessor from '../../utilities/imageprocessor';
+import processFile from '../../utilities/imageprocessor';
 import ImageFile from '../../utilities/imageFileClass';
 import fs from 'fs';
 
@@ -6,7 +6,7 @@ const imageFile = new ImageFile('fjord', '300', '300');
 
 describe('imageprocessor unit test', () => {
   it('should process an image, save it and return true', () => {
-    return imageprocessor.processFile(imageFile).then((result) => {
+    return processFile(imageFile).then((result) => {
       expect(result).toBeTrue();
     });
   });

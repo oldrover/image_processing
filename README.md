@@ -8,6 +8,6 @@ Add the filename, desired width and height like:
 localhost:3000/api/images?filename=fjord&width=300&height=300
 ```
 
-**filename:** filename of the file located in the `./images/full` folder without `.jpg `ending
-**width:** desired with of the processed file
-**height:** desired height of the processed file
+- **filename:** filename of the file located in the `./images/full` folder without `.jpg `ending
+- **width:** desired with of the processed file
+- **height:** desired height of the processed file

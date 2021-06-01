@@ -5,9 +5,16 @@ const request = supertest(app);
 
 describe('Test endpoint responses', () => {
   describe('Tests the / endpoint', () => {
-    it('should get Status Code 302', async () => {
+    it('should get Status Code 200', async () => {
       const response = await request.get('/');
-      expect(response.statusCode).toBe(302);
+      expect(response.statusCode).toBe(200);
+    });    
+  });
+
+  describe('Tests the /api endpoint', () => {
+    it('should get Status Code 200', async () => {
+      const response = await request.get('/api');
+      expect(response.statusCode).toBe(200);
     });
   });
 
