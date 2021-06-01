@@ -8,7 +8,6 @@ const images = async (
   req: express.Request,
   res: express.Response,
   next: Function
-  
 ): Promise<void> => {
   if (!req.query.filename || !req.query.width || !req.query.height) {
     !req.query.filename

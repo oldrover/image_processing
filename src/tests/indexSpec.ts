@@ -8,7 +8,7 @@ describe('Test endpoint responses', () => {
     it('should get Status Code 200', async () => {
       const response = await request.get('/');
       expect(response.statusCode).toBe(200);
-    });    
+    });
   });
 
   describe('Tests the /api endpoint', () => {
