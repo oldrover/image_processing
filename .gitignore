@@ -2,7 +2,7 @@
 /dist
 /tmp
 /out-tsc
-/images
+/images/thumb
 # Dependency directories
 node_modules/
 
