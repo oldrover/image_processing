@@ -41,10 +41,10 @@ const imageprocessing = async (
 };
 
 const processFile = async (imageFile: ImageFile): Promise<boolean> => {
-  let check = false; 
-  
-  if(!fs.existsSync('./images/thumb')) fs.mkdirSync('./images/thumb');
-  
+  let check = false;
+
+  if (!fs.existsSync('./images/thumb')) fs.mkdirSync('./images/thumb');
+
   await sharp(imageFile.getSrcPath())
     .resize(parseInt(imageFile.width), parseInt(imageFile.height))
     .toFile(imageFile.getOutPath())
