@@ -1,6 +1,35 @@
-const myFunc = (num: number) => {
-    return num * num;
-};
-it('expect myFunc(5) to equal 25', () => {
-    expect(myFunc(5)).toEqual(25);
+import supertest from 'supertest';
+import app from '../index';
+
+const request = supertest(app);
+
+describe('Test endpoint responses', () => {
+  describe('Tests the / endpoint', () => {
+    it('should get Status Code 302', async () => {
+      const response = await request.get('/');
+      expect(response.statusCode).toBe(302);
+    });
+  });
+
+  describe('Test the /api/images endpoint', () => {
+    it('should  get Status Code 200', async () => {
+      const response = await request.get('/api/images');
+      expect(response.statusCode).toBe(200);
+    });
+
+    it('should respond: Please add an image filename', async () => {
+      const response = await request.get('/api/images');
+      expect(response.text).toBe('Please add an image filename');
+    });
+
+    it('should respond: Please add a width value', async () => {
+      const response = await request.get('/api/images?filename=test');
+      expect(response.text).toBe('Please add a width value');
+    });
+
+    it('should respond: Please add a height value', async () => {
+      const response = await request.get('/api/images?filename=test&width=200');
+      expect(response.text).toBe('Please add a height value');
+    });
+  });
 });
